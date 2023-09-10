@@ -1,0 +1,30 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "CommonJS",
+        "outDir": "./dist", // Output directory for compiled JavaScript files
+        "rootDir": "./src", // Source code directory
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "moduleResolution": "node",
+        "declaration": true,
+        "sourceMap": true,
+        "resolveJsonModule": true,
+        "baseUrl": "./src", // Base directory for resolving non-relative module names
+        "paths": {
+            "*": [
+                "node_modules/*",
+                "src/types/*"
+            ] // Customize module resolution paths
+        }
+    },
+    "include": [
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
+}
