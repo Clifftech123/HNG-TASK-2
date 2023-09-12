@@ -30,16 +30,23 @@ export const createPerson = async (
   }
 };
 // Retrieve a person by id
-export const getAllPersons = async (
+export const getPersonById = async (
   req: Request,
   res: Response
 ): Promise<void> => {
   try {
-    // Find all persons in the database
-    const persons = await PersonModel.find();
+    const { id } = req.params;
 
-    // Return the persons
-    res.status(200).json(persons);
+    // Find the person with the provided ID in the database
+    const person = await PersonModel.findById(id);
+
+    if (!person) {
+      // If no person is found, return a 404 Not Found response
+      res.status(404).json({ error: "Person not found" });
+    } else {
+      // Return the person
+      res.status(200).json(person);
+    }
   } catch (error) {
     // Handle any errors that occur during the retrieval process
     res.status(500).json({ error: "Internal server error" });
