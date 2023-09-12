@@ -1,19 +1,18 @@
 import { Request, Response } from "express";
 import { PersonModel } from "../models/person.model";
+import * as z from "zod";
 
-// Create a new person
+
+const createPersonSchema = z.object({
+  name: z.string(),
+});
+
 export const createPerson = async (
   req: Request,
   res: Response
 ): Promise<void> => {
   try {
-    const { name } = req.body;
-
-    // Check if name is provided
-    if (!name) {
-      res.status(400).json({ error: "Name is a required field." });
-      return;
-    }
+    const { name } = createPersonSchema.parse(req.body);
 
     // Create a new person with the provided name
     const person = new PersonModel({ name });
@@ -22,58 +21,41 @@ export const createPerson = async (
     // Return the newly created person
     res.status(201).json(savedPerson);
   } catch (error) {
-    // Handle any errors that occur during the creation process
-    res.status(500).json({ error: "Internal server error" });
+    if (error instanceof z.ZodError) {
+      res.status(400).json({ error: error.message });
+    } else {
+      // Handle any other errors that occur during the creation process
+      res.status(500).json({ error: "Internal server error" });
+    }
   }
 };
-
-// Retrieve a person by name
-export const getPersonByName = async (
+// Retrieve a person by id
+export const getAllPersons = async (
   req: Request,
   res: Response
 ): Promise<void> => {
   try {
-    const { name } = req.params;
+    // Find all persons in the database
+    const persons = await PersonModel.find();
 
-    // Check if name is provided
-    if (!name) {
-      res.status(400).json({ error: "Name is a required field." });
-      return;
-    }
-
-    // Find the person with the provided name
-    const person = await PersonModel.findOne({ name });
-
-    // Check if person exists
-    if (!person) {
-      res.status(404).json({ error: "Person not found." });
-      return;
-    }
-
-    // Return the person
-    res.status(200).json(person);
+    // Return the persons
+    res.status(200).json(persons);
   } catch (error) {
     // Handle any errors that occur during the retrieval process
     res.status(500).json({ error: "Internal server error" });
   }
 };
 
-// Update a person by name
-export const updatePersonByName = async (
+// Update a person by id
+export const updatePersonById = async (
   req: Request,
   res: Response
 ): Promise<void> => {
   try {
-    const { name } = req.params;
+    const { id } = req.params;
 
-    // Check if name is provided
-    if (!name) {
-      res.status(400).json({ error: "Name is a required field." });
-      return;
-    }
-
-    // Find the person with the provided name
-    const person = await PersonModel.findOne({ name });
+    // Find the person with the provided id
+    const person = await PersonModel.findById(id);
 
     // Check if person exists
     if (!person) {
@@ -93,22 +75,16 @@ export const updatePersonByName = async (
   }
 };
 
-// Delete a person by name
-export const deletePersonByName = async (
+// Delete a person by id
+export const deletePersonById = async (
   req: Request,
   res: Response
 ): Promise<void> => {
   try {
-    const { name } = req.query;
+    const { id } = req.params;
 
-    // Check if name is provided
-    if (!name) {
-      res.status(400).json({ error: "Name is a required query parameter." });
-      return;
-    }
-
-    // Find and delete the person with the provided name
-    const deletedPerson = await PersonModel.findOneAndDelete({ name });
+    // Find and delete the person with the provided id
+    const deletedPerson = await PersonModel.findByIdAndDelete(id);
 
     // Check if person exists
     if (!deletedPerson) {
@@ -116,8 +92,8 @@ export const deletePersonByName = async (
       return;
     }
 
-    // Return a success status code
-    res.status(204).end();
+    // Return a success message
+    res.status(200).json({ message: "Person deleted successfully." });
   } catch (error) {
     // Handle any errors that occur during the deletion process
     res.status(500).json({ error: "Internal server error" });

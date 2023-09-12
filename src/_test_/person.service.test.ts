@@ -1,5 +1,6 @@
-import { Model,  } from "mongoose";
-import { IPerson } from "../interface/IPerson.interface";
+import { Model } from "mongoose";
+import { IPerson } from "src/interface/IPerson.interface";
+
 
 // Create a new person
 export const createPerson = async (
