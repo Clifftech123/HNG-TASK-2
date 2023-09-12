@@ -1,12 +1,12 @@
 {
   "name": "hng-rest-crud-api",
   "version": "1.0.0",
-  "main": "server.ts",
+  "main": "app.ts",
   "repository": "https://github.com/Clifftech123/hng-rest-crud-api.git",
   "author": "Isaiah Clifford Opoku <opokuisaiahclifford123@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node ./build/server.js",
+    "start": "node ./build/app.js",
     "dev": "nodemon  ./src/app.ts",
     "build": "npx tsc"
   },
