@@ -2,8 +2,8 @@ import { Router } from "express";
 import express from "express";
 import {
   createPerson,
-  getAllPersons,
   updatePersonById,
+  getPersonById,
   deletePersonById,
 } from "../Controllers/person.controller";
 
@@ -13,7 +13,7 @@ const router = express.Router();
 router.post("/api", createPerson );
 
 // Get all persons
-router.get("/api", getAllPersons);
+  router .get("/api/:id", getPersonById)
 
 // update user by id 
 
