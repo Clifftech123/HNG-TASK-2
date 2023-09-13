@@ -23,36 +23,8 @@ This project aims to create a robust REST API for managing person data. It inclu
 - Dynamic parameter handling for flexible queries.
 - Secure interactions with the database to prevent common vulnerabilities.
 
-## Folder Structure
 
-Here's the folder structure of the project:
 
-hng-rest-crud-api/
-├── src/
-│ ├── controllers/
-│ ├── database.ts
-│ ├── controllers/
-│ │ ├── person.controller.ts
-│ ├── docs/
-│ │ ├── UML_diagrams/
-│ │ │ ├── api_class_diagram.png
-│ ├── interface/
-│ │ ├── IPerson.interface.ts
-│ ├── models/
-│ │ ├── person.model.ts
-│ ├── Route/
-│ │ ├── Person.routes.ts
-│ ├── Services/
-│ │ ├── person.service.ts
-│ ├── .env.example
-│ ├── app.ts
-├── .env
-├── .gitignore
-├── package.json
-├── tsconfig.json
-└── README.md
-└── tsconfig.json
-└── yarn.lock
 
 ## Getting Started
 
@@ -198,18 +170,20 @@ This endpoint creates a new person record in the database. The name attribute is
 
 ## UML Diagrams
 
-- UML diagrams representing the API's class structure and entity-relationship design can be found in the `docs/UML_diagrams` folder.
+- UML diagrams representing the API's class structure and entity-relationship design can be found in the `docs/UML_diagrams.png` folder.
+![UML](src/docs/Copy%20of%20Hng-backend-namw.jpeg)
 
-## Documentation
 
 ### POSTMAN API AUTOMATION TESTING
-This is contain Postman aumate testing API end point 
+This project includes automated tests for each API endpoint using Postman. The tests are located in the `Postman folder` in `src/Postman` and are organized by endpoint. The tests are designed to run against a local instance of the API. To run the tests, follow the steps below.
 
 ## API Points 
 - **Endpoint:** `POST  https://hngtask1-stage-2.onrender.com/api`
 
+ *
 * Test code 
 ```js
+ - *  `Postman Collection name `: Post-Person-Test
 
 pm.test("Create a Person - Status Code is 201", function () {
     pm.response.to.have.status(201);
@@ -226,6 +200,7 @@ pm.test("Create a Person - Response  Name", function () {
 
 
 - **Endpoint:** `GET  https://hngtask1-stage-2.onrender.com/api/:id`
+ - *  `Postman Collection name `: Get-Person-by-id
 * Test code 
 ```js 
 pm.test("Response body is valid JSON", function () {
@@ -239,6 +214,7 @@ pm.test("Response body is valid JSON", function () {
 
 
 - **Endpoint:** `PUT  https://hngtask1-stage-2.onrender.com/api/:id`
+ - *  `Postman Collection name `: update-person-by-id
 
 * Test code 
 
@@ -254,6 +230,8 @@ pm.test("Update a Person - Status Code is 200", function () {
 
 
 - **Endpoint:** `Delete  https://hngtask1-stage-2.onrender.com/api/:id`
+ - *  `Postman Collection name `: Delete-Person-by-id
+
 ```js
 pm.test("Update a Person - Status Code is 404", function () {
     pm.response.to.have.status(404);
