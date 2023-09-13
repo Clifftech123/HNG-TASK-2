@@ -61,7 +61,7 @@ This project aims to create a robust REST API for managing person data. It inclu
 
   ```json
   {
-    "name": "John Doe"
+    "name": "Clifford Opoku  Isaiah"
   }
   ```
 
