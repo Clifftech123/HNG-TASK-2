@@ -1,0 +1,194 @@
+{
+	"info": {
+		"_postman_id": "92c55a21-4078-4eb6-bfee-9f8a0eefbee7",
+		"name": "hng-stage-2-task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25055000"
+	},
+	"item": [
+		{
+			"name": "Post-Person-Test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Create a Person - Status Code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Create a Person - Response  Name\", function () {\r",
+							"    pm.response.to.have.jsonBody(\"name\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Clifford nae\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://hngtask1-stage-2.onrender.com/api",
+					"protocol": "https",
+					"host": [
+						"hngtask1-stage-2",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get-Person-by-id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response body is valid JSON\", function () {\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Clifford Opoku\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://hngtask1-stage-2.onrender.com/api/65010c2b9f54bada8f87d9e3",
+					"protocol": "https",
+					"host": [
+						"hngtask1-stage-2",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"65010c2b9f54bada8f87d9e3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update-person-by-id ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Update a Person - Status Code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Updated Name \"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://hngtask1-stage-2.onrender.com/api/6501030f31ce063922818171",
+					"protocol": "https",
+					"host": [
+						"hngtask1-stage-2",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"6501030f31ce063922818171"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete-Person-by-id ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Update a Person - Status Code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://hngtask1-stage-2.onrender.com/api/65010f2e9f54bada8f87d9fa",
+					"protocol": "https",
+					"host": [
+						"hngtask1-stage-2",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"65010f2e9f54bada8f87d9fa"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
